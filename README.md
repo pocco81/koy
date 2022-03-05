@@ -17,7 +17,7 @@
 
 &nbsp;
 
-## 📣 Rant
+### 📣 Rant
 
 **Disclaimer**: these are just my thoughts on config/data serialization languages. Feel free to disagree (and to open an issue, I'm open to discussions.)
 
