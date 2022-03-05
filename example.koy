@@ -3,7 +3,7 @@
 	and you are reading a multi-line comment :^)
 */
 
-// let's import some settings shall we?
+// let's import some settings, shall we?
 import "./settings/screen.koy"
 
 title: "Koy Example"

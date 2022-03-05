@@ -58,7 +58,7 @@ This is **Koy**, just a proof of concept for what I ambition my _ideal_ data ser
 	and you are reading a multi-line comment :^)
 */
 
-// let's import some settings shall we?
+// let's import some settings, shall we?
 import "./settings/screen.koy"
 
 title: "Koy Example"
