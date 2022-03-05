@@ -84,7 +84,7 @@ device: {
 		Integer quis sapien varius, congue purus sed,\n
 		fringilla risus`,
 	available: true,
-	date_of_acquisition: 20011-05-27T07,
+	date_of_acquisition: 2011-05-27T07,
 	ip: "10.0.0.1",
 	average_temps: {
 		cpu: 79.5,
