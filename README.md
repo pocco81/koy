@@ -50,9 +50,9 @@ I like how XML is useful for portting data across platforms, however I dislike t
 
 ### 👷 Initiative
 
-This is just a proof of concept for what I ambition my _ideal_ data serialization language to look like:
+This is **Koy**, just a proof of concept for what I ambition my _ideal_ data serialization language to look like:
 
-```yaml
+```json
 /*
 	Hello world! this is a simple Koy document
 	and you are reading a multi-line comment :^)
@@ -79,7 +79,7 @@ meta: {
 device: {
 	colorscheme: "gruvbox-${theme}",
 	pkgs: "1465 ${package_manager}",
-	description: `Lorem ipsum dolor sit ${username}, consectetur adipiscing elit.\n
+	description: `Lorem ipsum dolor sit ${username}, elit.\n
 		Integer quis sapien varius, congue purus sed,\n
 		fringilla risus`,
 	available: true,
@@ -93,4 +93,4 @@ device: {
 }
 ```
 
-> Note: this file can be found [here]()
+> Note: this file can be found [here](https://github.com/Pocco81/koy-lang/blob/main/example.koy)

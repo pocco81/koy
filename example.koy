@@ -24,7 +24,7 @@ meta: {
 device: {
 	colorscheme: "gruvbox-${theme}",
 	pkgs: "1465 ${package_manager}",
-	description: `Lorem ipsum dolor sit ${username}, consectetur adipiscing elit.\n
+	description: `Lorem ipsum dolor sit ${username}, elit.\n
 		Integer quis sapien varius, congue purus sed,\n
 		fringilla risus`,
 	available: true,
