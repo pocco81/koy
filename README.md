@@ -56,7 +56,6 @@ This is **Koy**, just a proof of concept for what I ambition my _ideal_ data ser
 /*
 	Hello world! this is a simple Koy document
 	and you are reading a multi-line comment :^)
-
 */
 
 // let's import some settings shall we?
