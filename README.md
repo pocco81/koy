@@ -27,7 +27,7 @@ I like how XML is useful for porting data across platforms, however I dislike th
 
 ### 🙋 Proposal
 
-[Data serialization](https://hazelcast.com/glossary/serialization/) languages should be simple as in easy to read and write, easy to structure, not visually obstrusive, feature rich, maintainable and have obvious semantincs understandable by your average 5 year-old.
+[Data serialization](https://hazelcast.com/glossary/serialization/) languages should be simple as in easy to read and write, easy to structure, not visually obstrusive, feature rich, maintainable, verbose and have obvious semantincs understandable by your average 5 year-old.
 
 #### 📄 Specific Features
 
