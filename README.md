@@ -48,6 +48,8 @@ I like how XML is useful for portting data across platforms, however I dislike t
 -   The name must be short. People don't realize it yet but the `0.000000001` milliseconds they save every time they type `conf.ini` vs `conf.json` could be used to spend more time with your loved ones!
 -   Have a standard _convention_ of errors (e.g. `NegativeArraySizeException` in Java)
 
+&nbsp;
+
 ### 👷 Initiative
 
 This is **Koy**, just a proof of concept for what I ambition my _ideal_ data serialization language to look like:
