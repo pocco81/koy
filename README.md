@@ -33,7 +33,7 @@ I like how XML is useful for porting data across platforms, however I dislike th
 
 -   Variables!
 -   Comments! (I'm looking at you JSON)
--   Support a wide-array of data types, for instance:
+-   Support a wide-array of data types, such as:
     -   String
     -   Integer
     -   Float
