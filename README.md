@@ -1,4 +1,4 @@
-# 🐟 koy-lang
+# 🎏 koy-lang
 
 Experimental human-friendly data serialization language
 
@@ -14,19 +14,19 @@ I like how XML is useful for portting data across platforms, however I dislike t
 
 ### Specific Features
 
-+ Comments! (I'm looking at you JSON)
-+ Support a wide-array of data types, for instance:
-	+ String
-	+ Integer
-	+ Float
-	+ Boolean
-	+ Object
-	+ Array (key-value, key)
-	+ Data and Times
-+ Import statement (modularization!)
-+ Variables!
+-   Variables!
+-   Comments! (I'm looking at you JSON)
+-   Support a wide-array of data types, for instance:
+    -   String
+    -   Integer
+    -   Float
+    -   Boolean
+    -   Object
+    -   Array (key-value, key)
+    -   Data and Times
+-   Import statement (modularization!)
 
 ### Non-Specific Features
 
-+ The name must be short. People don't realize it yet but the `0.000000001` milliseconds they save every time they type `conf.ini` vs `conf.json` could be used to spend more time with your loved ones!
-+ Have a standard *convention* of errors (e.g. `NegativeArraySizeException` in JAVA)
+-   The name must be short. People don't realize it yet but the `0.000000001` milliseconds they save every time they type `conf.ini` vs `conf.json` could be used to spend more time with your loved ones!
+-   Have a standard _convention_ of errors (e.g. `NegativeArraySizeException` in Java)
