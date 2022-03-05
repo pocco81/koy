@@ -52,7 +52,7 @@ I like how XML is useful for portting data across platforms, however I dislike t
 
 This is **Koy**, just a proof of concept for what I ambition my _ideal_ data serialization language to look like:
 
-```json
+```
 /*
 	Hello world! this is a simple Koy document
 	and you are reading a multi-line comment :^)
