@@ -66,14 +66,14 @@ import "./settings/screen.koy"
 title: "Koy Example"
 meta: {
 	user: [
-		hostname: "Lenovo Thinkpad",
-		username: "Pocco81"
+		hostname: "lenovo thinkpad",
+		username: "pocco81"
 	],
 	environment: {
-		TERM: "linux",
-		HISTSIZE: 5000,
-		HISTIGNORE: "&:ls:[bf]g:exit"
-		theme: "light"
+		term: "linux",
+		histsize: 5000,
+		histignore: "&:ls:[bf]g:exit",
+		theme: "light",
 		package_manage: "pacman"
 	}
 }

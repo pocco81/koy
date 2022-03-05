@@ -15,8 +15,8 @@ meta: {
 	environment: {
 		TERM: "linux",
 		HISTSIZE: 5000,
-		HISTIGNORE: "&:ls:[bf]g:exit"
-		theme: "light"
+		HISTIGNORE: "&:ls:[bf]g:exit",
+		theme: "light",
 		package_manage: "pacman"
 	}
 }
