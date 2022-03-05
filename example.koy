@@ -4,8 +4,8 @@
 
 */
 
-SRC: "./settings/"
-import "${SRC}screen.koy"
+// let's import some settings shall we?
+import "./settings/screen.koy"
 
 title: "Koy Example"
 meta: {

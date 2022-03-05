@@ -59,8 +59,8 @@ This is **Koy**, just a proof of concept for what I ambition my _ideal_ data ser
 
 */
 
-SRC: "./settings/"
-import "${SRC}screen.koy"
+// let's import some settings shall we?
+import "./settings/screen.koy"
 
 title: "Koy Example"
 meta: {
