@@ -98,20 +98,23 @@ device: {
 
 ### Specs Sheet
 
-
-Here is a small cheat sheet made with ❤️  so that you won't have to go over the general doc :)
+Here is a small cheat sheet made with ❤️ so that you won't have to go over the general doc :)
 
 <details>
     <summary>Cheat sheet for symbols</summary>
 
-| Symbols         | Function                   | Example |
-|-----------------|----------------------------|---------|
-| `//`            | Single-line comment        |         |
+| Symbols | Function            | Example |
+| ------- | ------------------- | ------- |
+| `//`    | Single-line comment | ```     |
+
+// hello world
+
+```|
 | `/**/`          | Multi-line comment         |         |
 | `${}`           | Call a variable            |         |
 | `""`            | Normal string              |         |
 | `""" """`      | Multi-line string          |         |
-| ````            | Define a literal key       |         |
+| <code>``</code>            | Define a literal key       |         |
 | `{}`            | Define an array            |         |
 | `[]`            | Define an object           |         |
 | `import "file"` | Import another `.koy` file |         |
@@ -138,11 +141,13 @@ Here is a small cheat sheet made with ❤️  so that you won't have to go over 
 Comments are an integral part of any program, that's why you've got two ways to use them:
 
 ```
+
 // single-line comment here!
 
-/*
-  multi-line comment
-*/
+/_
+multi-line comment
+_/
+
 ```
 
 #### General Structure
@@ -150,7 +155,9 @@ Comments are an integral part of any program, that's why you've got two ways to 
 Like JSON, `key -> values` are the foundation of everything. The general structure is the following one:
 
 ```
+
 key: value
+
 ```
 
 > notice the space between the `:` and the `value`.
@@ -160,6 +167,7 @@ key: value
 + Keys can only contain ASCII letters and underscores (A-Za-z0-9_)
 
 ```
+
 key: "value"
 key_1: "value"
 2001: "value"
@@ -167,25 +175,32 @@ key_1: "value"
 // invalid keys
 my-key: "value"
 இந்தியா: "value"
+
 ```
 
 + Literal keys must be specified using backticks
 
 ```
+
 `mainland!tv.קום`: "value"
+
 ```
 
 + Keys must not be empty
 
 ```
+
 : "value" //invalid
+
 ```
 
 + Keys cannot be duplicated
 
 ```
+
 hello: "world"
 hello: "momma!"
+
 ```
 
 ##### Values
@@ -209,14 +224,17 @@ Values can have any of the following data types:
 + `import`: import another `.koy` file.
 
 ```
+
 // single import example
 import "./directory/my_config.koy"
 
 // multiple imports
 import {
-	"./directory/user0.koy",
-	"./directory/user1.koy",
-	"./directory/user2.koy"
+"./directory/user0.koy",
+"./directory/user1.koy",
+"./directory/user2.koy"
 }
+
 ```
 
+```
