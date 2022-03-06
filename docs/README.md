@@ -8,6 +8,8 @@
   <a href="https://github.com/Pocco81/koy-lang/blob/main/docs/conventions.md">Conventions</a>
   ·
   <a href="https://github.com/Pocco81/koy-lang/tree/main/docs#-cheat-sheet">Cheat-sheets</a>
+  ·
+  <a href="https://github.com/Pocco81/koy-lang/blob/main/docs/style-guide.md">Style-guide</a>
 </h6>
 
 <p align="center">
