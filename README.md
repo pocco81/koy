@@ -104,22 +104,60 @@ Here is a small cheat sheet made with ❤️  so that you won't have to go over 
 <details>
     <summary>Cheat sheet for symbols</summary>
 
-| Symbols         | Function                   | Example |
-|-----------------|----------------------------|---------|
-| `//`            | Single-line comment        | <code>
+<table>
+<tr>
+<td> Symbols </td> <td> Function </td> <td> Example </td>
 
-// test
+</tr>
+<tr>
+<td> <code>//</code> </td>
+<td> Single-line comment </td>
+<td>
 
-</code>        |
-| `/**/`          | Multi-line comment         |         |
-| `${}`           | Call a variable            |         |
-| `""`            | Normal string              |         |
-| `""" """`      | Multi-line string          |         |
-| <code>``</code>            | Define a literal key       |         |
-| `{}`            | Define an array            |         |
-| `[]`            | Define an object           |         |
-| `import "file"` | Import another `.koy` file |         |
-| `<<`            | Overwrite values           |         |
+```
+// hello world!
+```
+
+</td>
+</tr>
+
+<tr>
+<td> <code>/**/</code> </td>
+<td> Multi-line comment </td>
+<td>
+
+```
+/*
+	This is a multi-line comment and
+	you are watcing Disney channel!
+*/
+```
+
+</td>
+</tr>
+</table>
+
+</tr>
+<tr>
+<td> <code>${}</code> </td>
+<td> Call a variable </td>
+<td>
+
+```
+// simple usage
+name: "Michael Theodor Mouse"
+hello: "Good evening ${name}"
+
+// with arrays (using the `.` notation)
+user: {
+	name: "Michael",
+	surnames: "Theodor Mouse"
+}
+hi: "Good morning ${user.name}"
+```
+
+</td>
+</tr>
 
 <br />
 </details>
