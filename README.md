@@ -19,7 +19,9 @@
 
 ### 📣 Rant
 
-**Disclaimer**: these are just my thoughts on config/data serialization languages. Feel free to disagree (and to open an issue, I'm open to discussions.)
+**Disclaimers**:
++ these are just my thoughts on config/data serialization languages. Feel free to disagree (and to open an issue, I'm open to discussions.)
++ all this is for the sake of creating a _bettter_ language, however I still haven't decided if I'll end up making this. Initially this repo was just meant to be a rant, but I don't know, maybe something good will come out of here!
 
 I like how XML is useful for porting data across platforms, however I dislike the fact that it "repeats itself" too much (opening and closing tags), so often times it feels visually jammed. JSON, however, is vastly nicer on the eyes due to its notable hierarchical structure. But now, looking more at its syntax I can't help but feel like it's _too strict_(?) (numbers and longstrings are a nightmare); apart from that, given that JSON is a data-only-type-of-config-language, nice stuff such as comments are not baked into it. On the other end of the spectrum, TOML, which focuses on being easy to read due to obvious sematic sucks for deeply nested _data_. The `.` convention simply doesn't cut it for me. Furthermore, something that I wish any of these included by default is native support for variable placeholders. I know, YAML has aliases and anchors which sorta do the job? however these simply don't work as such because they can't be inserted arbitrarily throughout a YAML file, which sucks too. Speaking about YAML, it is unnecessarily complex. Like, c'mon? 4 ways to define a simple boolean?
 
