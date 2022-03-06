@@ -96,10 +96,16 @@ device: {
 
 > Note: this file can be found [here](https://github.com/Pocco81/koy-lang/blob/main/example.koy)
 
+&nbsp;
+
 ### Specs Sheet
 
+General info:
 
-Here is a small cheat sheet made with ❤️  so that you won't have to go over the general doc :)
++ **Filename Extension**: `.koy`
++ **MIME Type**: `application/koy`
+
+Now getting into the juicy part! here is a small cheat sheet made with ❤️  so that you won't have to go over the general doc :)
 
 <details>
     <summary>Cheat sheet for symbols</summary>
