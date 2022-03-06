@@ -108,7 +108,7 @@ General info:
 Now getting into the juicy part! here is a small cheat sheet made with ❤️  so that you won't have to go over the general doc :)
 
 <details>
-    <summary>Cheat sheet for symbols</summary>
+    <summary><i>Cheat sheet for symbols</i></summary>
 &nbsp;
 
 <table>
@@ -307,7 +307,7 @@ laptop: {
 </details>
 
 <details>
-    <summary>Cheat sheet for rules</summary>
+    <summary><i>Cheat sheet for rules</i></summary>
 
 <br />
 </details>
