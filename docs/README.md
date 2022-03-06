@@ -2,23 +2,21 @@
   <h2 align="center">📄 Koy Lang Docs</h2>
 </p>
 
+<h6 align="center">
+  <a href="https://github.com/Pocco81/koy-lang/blob/main/docs/specs.md">Specs</a>
+  ·
+  <a href="https://github.com/Pocco81/koy-lang/blob/main/docs/conventions.md">Conventions</a>
+  ·
+  <a href="https://github.com/Pocco81/koy-lang/tree/main/docs#-cheat-sheet">Cheat-sheets</a>
+</h6>
+
 <p align="center">
 	Documentation for Koy, the human-friendly data serialization language
 </p>
 
 &nbsp;
 
-### 🌲 Table of Contents
-
-+ Introduction
-	+ Cheat sheets
-+ Specs sheet
-+ Conventions
-
-&nbsp;
-
-### 😇 Introduction
-
+### 🎏 Koy Lang
 
 &nbsp;
 
@@ -236,3 +234,5 @@ laptop: {
 
 <br />
 </details>
+
+&nbsp;
