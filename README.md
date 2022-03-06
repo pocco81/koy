@@ -102,10 +102,10 @@ device: {
 
 General info:
 
-+ **Filename Extension**: `.koy`
-+ **MIME Type**: `application/koy`
+-   **Filename Extension**: `.koy`
+-   **MIME Type**: `application/koy`
 
-Now getting into the juicy part! here is a small cheat sheet made with ❤️  so that you won't have to go over the general doc :)
+Now getting into the juicy part! here is a small cheat sheet made with ❤️ so that you won't have to go over the general doc :)
 
 &nbsp;
 
@@ -348,7 +348,7 @@ key: value
 
 ##### Keys
 
-+ Keys can only contain ASCII letters and underscores (A-Za-z0-9_)
+-   Keys can only contain ASCII letters and underscores (A-Za-z0-9\_)
 
 ```
 key: "value"
@@ -360,19 +360,19 @@ my-key: "value"
 இந்தியா: "value"
 ```
 
-+ Literal keys must be specified using backticks
+-   Literal keys must be specified using backticks
 
 ```
 `mainland!tv.קום`: "value"
 ```
 
-+ Keys must not be empty
+-   Keys must not be empty
 
 ```
 : "value" //invalid
 ```
 
-+ Keys cannot be duplicated
+-   Keys cannot be duplicated
 
 ```
 hello: "world"
@@ -382,22 +382,22 @@ hello: "momma!"
 ##### Values
 
 Values can have any of the following data types:
-+ Integer
-+ String
-+ Null
-+ Array
-+ Boolean
-+ Float
-+ Object
+
+-   Integer
+-   String
+-   Null
+-   Array
+-   Boolean
+-   Float
+-   Object
 
 ### Data Types
 
 #### Integer
 
-
 ### Statements
 
-+ `import`: import another `.koy` file.
+-   `import`: import another `.koy` file.
 
 ```
 // single import example
@@ -410,4 +410,3 @@ import {
 	"./directory/user2.koy"
 }
 ```
-
