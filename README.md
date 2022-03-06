@@ -245,10 +245,10 @@ metadata: {
 <td>
 
 ```
-user: {
+user: [
 	name: "Michael Theodor Mouse",
 	age: 92
-}
+]
 ```
 
 </td>
