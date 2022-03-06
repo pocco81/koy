@@ -100,6 +100,6 @@ device: {
 
 ### 🎁 Documentation
 
-You can read the docs [here]()
+You can read the docs [here](https://github.com/Pocco81/koy-lang/tree/main/docs)
 
 ---

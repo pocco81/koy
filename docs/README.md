@@ -1,16 +1,28 @@
-## Koy Lang
+<p align="center">
+  <h2 align="center">🎏 Koy Lang Docs</h2>
+</p>
 
-#### 🌲 Table of Contents
+<p align="center">
+	Documentation for Koy, the human-friendly data serialization language
+</p>
+
+&nbsp;
+
+### 🌲 Table of Contents
 
 + Introduction
 	+ Cheat sheets
 + Specs sheet
 + Conventions
 
-#### Introduction
+&nbsp;
+
+### 😇 Introduction
 
 
-##### Cheat sheet
+&nbsp;
+
+### 📚 Cheat sheet
 
 <details>
     <summary><i>Cheat sheet for symbols</i></summary>
