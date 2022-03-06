@@ -98,7 +98,7 @@ device: {
 
 &nbsp;
 
-### Specs Sheet
+### 🎁 Specs Sheet
 
 General info:
 
