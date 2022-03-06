@@ -106,11 +106,11 @@ Here is a small cheat sheet made with ❤️  so that you won't have to go over 
 
 | Symbols         | Function                   | Example |
 |-----------------|----------------------------|---------|
-| `//`            | Single-line comment        | ```
+| `//`            | Single-line comment        | <code>
 
 // test
 
-```        |
+</code>        |
 | `/**/`          | Multi-line comment         |         |
 | `${}`           | Call a variable            |         |
 | `""`            | Normal string              |         |
