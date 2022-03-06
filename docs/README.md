@@ -18,7 +18,7 @@
 
 ### 🎏 Koy Lang
 
-Koy is designed to be a minimal, simple and intuitive data serialization language. It has a small set symbols, not too many rules and only one singular statement, which makes it human-friendly, lacking unnecessary complexity. Developers fall in love with the language because it's easy to implement, debug and modularize.
+Koy is designed to be a minimal, simple and intuitive data serialization language; easy for you, your dog and your average 5 year-old. It has a small set of symbols, not too many rules and only one singular statement. Its lack of complexity makes it the perfect language for your project! easy to implement, debug and modularize.
 
 &nbsp;
 
