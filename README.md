@@ -103,6 +103,7 @@ Here is a small cheat sheet made with ❤️  so that you won't have to go over 
 
 <details>
     <summary>Cheat sheet for symbols</summary>
+&nbsp;
 
 <table>
 <tr>
