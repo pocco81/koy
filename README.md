@@ -198,7 +198,7 @@ hello: """My name is
 
 </tr>
 <tr>
-<td> <code>` `</code> </td>
+<td> <code>``</code> </td>
 <td> Define a literal key </td>
 <td>
 
@@ -211,7 +211,7 @@ hello: """My name is
 
 </tr>
 <tr>
-<td> <code>' '</code> </td>
+<td> <code>''</code> </td>
 <td> Define a literal value </td>
 <td>
 
