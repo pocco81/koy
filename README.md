@@ -107,6 +107,8 @@ General info:
 
 Now getting into the juicy part! here is a small cheat sheet made with ❤️  so that you won't have to go over the general doc :)
 
+&nbsp;
+
 <details>
     <summary><i>Cheat sheet for symbols</i></summary>
 &nbsp;
@@ -308,16 +310,19 @@ laptop: {
 
 <details>
     <summary><i>Cheat sheet for rules</i></summary>
+&nbsp;
 
 <br />
 </details>
 
 <details>
-    <summary>Example <code>.koy</code> file using every feature</summary>
+    <summary><i>Example <code>.koy</code> file using every feature</i></summary>
+&nbsp;
 
 <br />
 </details>
 
+&nbsp;
 
 #### Comments
 
