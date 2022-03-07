@@ -105,7 +105,7 @@ A data type, in programming, is a classification that specifies which type of va
 
 #### Specifying/Converting Data Types
 
-Data types can be specified using two exclamation marks (`!!`). It will convert the incoming value if needed:
+Data types can be specified using two exclamation marks (`!!`) and then the desired type before the `value`. It will convert the incoming value if needed:
 
 ```
 num1: !!int 1.0		// converted to 1
@@ -154,6 +154,7 @@ key: null
 -   Elements are separated by commas (`,`), except for the last one
 -   Empty arrays can be declared by leaving the brackets empty
 -   Arrays can contain values of different types
+-   They can be nested
 
 ```
 environment: {
@@ -228,9 +229,13 @@ import {
 Everything in a `.koy` file is a variable:
 
 -   They can be accessed using `${}`
+
+```
+name: "Michael Theodor Mouse"
+hello: "Good evening ${name}"
+```
+
 -   Variables within an array can be accessed using the `.` notation
--   The value of a variable can be overwritten using `<<`
--   When using `<<` on an array or an object, it will replace its fields
 
 ```
 // simple usage
@@ -245,13 +250,18 @@ user: {
 hi: "Good morning ${user.name}"
 ```
 
+-   The value of a variable can be overwritten using `<<`
+
 ```
-// normal variables
 hello: "world"
-another_hello: ${hello} << "momma!" // notice that hello = "world"
+another_hello: ${hello} << "momma!" // notice that hello is still equal to "world"
 
 mouse: "Mickey" << "Minnie"
+```
 
+-   When using `<<` on an array or an object, it will replace its fields
+
+```
 // object
 user: [
 	name: "Michael Theodor Mouse",
