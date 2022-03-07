@@ -3,7 +3,7 @@
 -   [General Structure](#general-structure)
 -   [Comments](#comments)
 -   [Data Types](#data-types)
-    -   [Specifying/Converting Data Types]()
+    -   [Specifying/Converting Data Types](#specifyingconverting-data-types)
     -   [Integer](#integer-int)
     -   [String](#string-str)
     -   [Null](#null-null)
@@ -184,6 +184,18 @@ likes_pineapple: false
 #### Float `(float)`
 
 Floating points contain numbers with a decimal points:
+
++ They must be implemented as IEEE 754 binary64 values
++ The decimal point, if used, must be surrounded by at least one digit on each side.
++ A float consists of an integer part followed by a fractional part
+-   Positive floats may be prefixed with a `+`
+-   Negative floats are prefixed with a `-`
+
+```
+f0: -0.00001
+f1: +34.0
+f2: 2.71828
+```
 
 #### Object `(bool)`
 
