@@ -132,12 +132,64 @@ i5: 2_005
 
 #### String `(str)`
 
-Strings contain alphanumeric characters
+Strings contain alphanumeric characters:
 
-Basic strings can be represented using quotation marks (`""`). Keep in mind that some Unicode characters must be escaped:
++ Any Unicode character may be escaped with the \uXXXX or \UXXXXXXXX forms. The escape codes must be valid Unicode scalar values.
++ Basic strings are surrounded by quotation marks ("). Any Unicode character may be used except those that must be escaped: quotation mark, backslash, and the control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
 
 ```
 hello: "world!\nYou may call me \"Jeff\""
+```
+
+For convenience, some popular characters have a compact escape sequence.
+
+```
+\b         - backspace       (U+0008)
+\t         - tab             (U+0009)
+\n         - linefeed        (U+000A)
+\f         - form feed       (U+000C)
+\r         - carriage return (U+000D)
+\"         - quote           (U+0022)
+\\         - backslash       (U+005C)
+\uXXXX     - unicode         (U+XXXX)
+\UXXXXXXXX - unicode         (U+XXXXXXXX)
+```
+
++ Multi-line basic strings are surrounded by three quotation marks on each side and allow newlines. A newline immediately following the opening delimiter will be trimmed. All other whitespace and newline characters remain intact.
+
+```
+str1 = """
+Roses are red
+Violets are blue"""
+```
+
++ For writing long strings without introducing extraneous whitespace, use a "line ending backslash". When the last non-whitespace character on a line is an unescaped \, it will be trimmed along with all whitespace (including newlines) up to the next non-whitespace character or closing delimiter. All of the escape sequences that are valid for basic strings are also valid for multi-line basic strings.
+
+```
+// The following strings are byte-for-byte equivalent
+str1: "The quick brown fox jumps over the lazy dog"
+
+str2: """
+The quick brown \
+
+
+  fox jumps over \
+    the lazy dog"""
+
+str3: """\
+       The quick brown \
+       fox jumps over \
+       the lazy dog.\
+       """
+```
+
++ You can write a quotation mark, or two adjacent quotation marks, anywhere inside a multi-line basic string. They can also be written just inside the delimiters.
+
+```
+str4: """Here are two quotation marks: "". Simple enough."""
+str5: """Here are three quotation marks: """."""  // invalid
+str5: """Here are three quotation marks: ""\"."""
+str6: """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
 ```
 
 #### Null `(null)`
