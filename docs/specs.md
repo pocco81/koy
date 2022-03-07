@@ -208,7 +208,9 @@ spouse: []
 
 Imports are statements used to "bring in" other `.koy` files:
 
--   `import`: import another `.koy` file.
++ The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing.
++ Single imports are done using only the `import` keyword
++ Multiple imports can be place inside of curly braces (`{}`) next to an `import` statement
 
 ```
 // single import example
