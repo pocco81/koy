@@ -222,6 +222,20 @@ laptop: {
 </td>
 </tr>
 
+</tr>
+<tr>
+<td> <code>!!</code> </td>
+<td> Specify data type </td>
+<td>
+
+```
+price: !!float 50
+id: !!str 10
+```
+
+</td>
+</tr>
+
 </table>
 
 <br />
