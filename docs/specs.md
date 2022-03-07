@@ -1,17 +1,18 @@
 ### 🌲 Table of Contents
 
--   [General Structure]()
--   [Comments]()
--   [Data Types]()
-    -   [Integer]()
-    -   [String]()
-    -   [Null]()
-    -   [Array]()
-    -   [Boolean]()
-    -   [Float]()
-    -   [Object]()
--   [Imports]()
--   [Variables]()
+-   [General Structure](#general-structure)
+-   [Comments](#comments)
+-   [Data Types](#data-types)
+    -   [Specifying/Converting Data Types]()
+    -   [Integer](#integer-int)
+    -   [String](#string-str)
+    -   [Null](#null-null)
+    -   [Array](#array-arr)
+    -   [Boolean](#boolean-bool)
+    -   [Float](#float-float)
+    -   [Object](#object-bool)
+-   [Imports](#imports)
+-   [Variables](#variables)
 
 &nbsp;
 
@@ -101,6 +102,16 @@ Comments are an integral part of any program, that's why you've got two ways to 
 ### Data Types
 
 A data type, in programming, is a classification that specifies which type of value a variable has and what type of mathematical, relational or logical operations can be applied to it without causing an error
+
+#### Specifying/Converting Data Types
+
+Data types can be specified using two exclamation marks (`!!`). It will convert the incoming value if needed:
+
+```
+num1: !!int 1.0		// converted to 1
+num2: !!float 100	// converted to 100.0
+num3: !!str 150		// converted to "150"
+```
 
 #### Integer `(int)`
 
@@ -216,10 +227,10 @@ import {
 
 Everything in a `.koy` file is a variable:
 
-+ They can be accessed using `${}`
-+ Variables within an array can be accessed using the `.` notation
-+ The value of a variable can be overwritten using `<<`
-+ When using `<<` on an array or an object, it will replace its fields
+-   They can be accessed using `${}`
+-   Variables within an array can be accessed using the `.` notation
+-   The value of a variable can be overwritten using `<<`
+-   When using `<<` on an array or an object, it will replace its fields
 
 ```
 // simple usage
@@ -259,6 +270,6 @@ laptop: {
 }
 ```
 
-> Note: you are not overwritting the variable you are calling, you are overwriting the value of the variable you are calling or the same variable itself (fifth line). On arrays/objects you are simply overwriting fields, not the whole array/object.
+> Note: you are not overwritting the variable you are calling, you are replacing the value of the incoming variable or the one you are assigning itself (fifth line). On arrays/objects you are simply overwriting fields, not the whole array/object.
 
 &nbsp;
