@@ -341,6 +341,6 @@ laptop: {
 }
 ```
 
-> Note: you are not overwritting the variable you are calling, you are replacing the value of the incoming variable or the one you are assigning itself (fifth line). On arrays/objects you are simply overwriting fields, not the whole array/object.
+> Note: you are not overwritting the variable you are calling, you are replacing the value of the incoming variable or the one you are assigning itself (third example, fourth line). On arrays/objects you are simply overwriting fields, not the whole array/object.
 
 &nbsp;
