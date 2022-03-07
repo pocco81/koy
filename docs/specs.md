@@ -1,4 +1,4 @@
-#### Comments
+### Comments
 
 Comments are an integral part of any program, that's why you've got two ways to use them:
 
@@ -10,7 +10,7 @@ Comments are an integral part of any program, that's why you've got two ways to 
 */
 ```
 
-#### General Structure
+### General Structure
 
 Like JSON, `key -> values` are the foundation of everything. The general structure is the following one:
 
@@ -20,9 +20,10 @@ key: value
 
 > notice the space between the `:` and the `value`.
 
-##### Keys
+#### Keys
 
--   Keys can only contain ASCII letters and underscores (A-Za-z0-9\_)
+<details>
+    <summary>Keys can only contain ASCII letters and underscores <code>(A-Za-z0-9\_)</code></summary>
 
 ```
 key: "value"
@@ -33,6 +34,8 @@ key_1: "value"
 my-key: "value"
 இந்தியா: "value"
 ```
+
+</details>
 
 -   Literal keys must be specified using backticks
 
