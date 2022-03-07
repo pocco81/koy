@@ -101,7 +101,7 @@ Comments are an integral part of any program, that's why you've got two ways to 
 
 ### Data Types
 
-A data type, in programming, is a classification that specifies which type of value a variable has and what type of mathematical, relational or logical operations can be applied to it without causing an error. On Koy files they are infered, however they can still be specified and values can be converted according to your needs.
+A data type, in programming, is a classification that specifies which type of value a variable has and what type of mathematical, relational or logical operations can be applied to it without causing an error. On Koy files they are inferred, however they can still be specified and values can be converted according to your needs.
 
 #### Specifying/Converting Data Types
 
@@ -208,7 +208,7 @@ spouse: []
 
 Imports are statements used to "bring in" other `.koy` files:
 
-+ The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing.
++ The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing
 + Single imports are done using only the `import` keyword
 + Multiple imports can be place inside of curly braces (`{}`) next to an `import` statement
 
@@ -237,18 +237,13 @@ name: "Michael Theodor Mouse"
 hello: "Good evening ${name}"
 ```
 
--   Variables within an array can be accessed using the `.` notation
+-   Variables within an array/object can be accessed using the `.` notation
 
 ```
-// simple usage
-name: "Michael Theodor Mouse"
-hello: "Good evening ${name}"
-
-// with arrays (using the `.` notation)
-user: {
+user: [
 	name: "Michael",
 	surnames: "Theodor Mouse"
-}
+]
 hi: "Good morning ${user.name}"
 ```
 
