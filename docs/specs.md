@@ -177,7 +177,7 @@ friends: {}
 -   must be either `true` or `false`
 
 ```
-has_child: true
+has_children: true
 likes_pineapple: false
 ```
 
