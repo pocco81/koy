@@ -134,8 +134,8 @@ i5: 2_005
 
 Strings contain alphanumeric characters:
 
-+ Any Unicode character may be escaped with the \uXXXX or \UXXXXXXXX forms. The escape codes must be valid Unicode scalar values.
-+ Basic strings are surrounded by quotation marks ("). Any Unicode character may be used except those that must be escaped: quotation mark, backslash, and the control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
+-   Any Unicode character may be escaped with the \uXXXX or \UXXXXXXXX forms. The escape codes must be valid Unicode scalar values.
+-   Basic strings are surrounded by quotation marks ("). Any Unicode character may be used except those that must be escaped: quotation mark, backslash, and the control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
 
 ```
 hello: "world!\nYou may call me \"Jeff\""
@@ -155,7 +155,7 @@ For convenience, some popular characters have a compact escape sequence.
 \UXXXXXXXX - unicode         (U+XXXXXXXX)
 ```
 
-+ Multi-line basic strings are surrounded by three quotation marks on each side and allow newlines. A newline immediately following the opening delimiter will be trimmed. All other whitespace and newline characters remain intact.
+-   Multi-line basic strings are surrounded by three quotation marks on each side and allow newlines. A newline immediately following the opening delimiter will be trimmed. All other whitespace and newline characters remain intact.
 
 ```
 str1 = """
@@ -163,7 +163,7 @@ Roses are red
 Violets are blue"""
 ```
 
-+ For writing long strings without introducing extraneous whitespace, use a "line ending backslash". When the last non-whitespace character on a line is an unescaped \, it will be trimmed along with all whitespace (including newlines) up to the next non-whitespace character or closing delimiter. All of the escape sequences that are valid for basic strings are also valid for multi-line basic strings.
+-   For writing long strings without introducing extraneous whitespace, use a "line ending backslash". When the last non-whitespace character on a line is an unescaped \, it will be trimmed along with all whitespace (including newlines) up to the next non-whitespace character or closing delimiter. All of the escape sequences that are valid for basic strings are also valid for multi-line basic strings.
 
 ```
 // The following strings are byte-for-byte equivalent
@@ -183,7 +183,7 @@ str3: """\
        """
 ```
 
-+ You can write a quotation mark, or two adjacent quotation marks, anywhere inside a multi-line basic string. They can also be written just inside the delimiters.
+-   You can write a quotation mark, or two adjacent quotation marks, anywhere inside a multi-line basic string. They can also be written just inside the delimiters.
 
 ```
 str4: """Here are two quotation marks: "". Simple enough."""
@@ -237,9 +237,9 @@ likes_pineapple: false
 
 Floating points contain numbers with a decimal points:
 
-+ They must be implemented as IEEE 754 binary64 values
-+ The decimal point, if used, must be surrounded by at least one digit on each side.
-+ A float consists of an integer part followed by a fractional part
+-   They must be implemented as IEEE 754 binary64 values
+-   The decimal point, if used, must be surrounded by at least one digit on each side.
+-   A float consists of an integer part followed by a fractional part
 -   Positive floats may be prefixed with a `+`
 -   Negative floats are prefixed with a `-`
 
@@ -272,9 +272,9 @@ spouse: []
 
 Imports are statements used to "bring in" other `.koy` files:
 
-+ The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing
-+ Single imports are done using only the `import` keyword
-+ Multiple imports can be place inside of curly braces (`{}`) next to an `import` statement
+-   The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing
+-   Single imports are done using only the `import` keyword
+-   Multiple imports can be place inside of curly braces (`{}`) next to an `import` statement
 
 ```
 // single import example
