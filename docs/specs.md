@@ -23,7 +23,7 @@ key: value
 #### Keys
 
 <details>
-    <summary>Keys can only contain ASCII letters and underscores <code>(A-Za-z0-9\_)</code></summary>
+    <summary>Keys can only contain ASCII letters and underscores <code>(A-Za-z0-9_)</code></summary>
 
 ```
 key: "value"
@@ -65,21 +65,101 @@ hello: "momma!"
 
 </details>
 
-##### Values
+#### Values
 
 Values can have any of the following data types:
 
--   Integer
--   String
--   Null
--   Array
--   Boolean
--   Float
--   Object
+-   Integer: `int`
+-   String: `str`
+-   Null: `null`
+-   Array: `arr`
+-   Boolean: `bool`
+-   Float: `float`
+-   Object: `obj`
 
 ### Data Types
 
-#### Integer
+#### Integer `(int)`
+
+Integers are whole numbers which may be positve or negative:
++ Integers can simply be whole numbers
++ Positive numbers may be prefixed with a `+`
++ Negative numbers may be prefixed with a `-`
++ Large numbers can be separeted using underscores (`_`) to enhance readability. The only condition is that they must be surrounded by at least one digit on each side
+
+```
+i1: -35
+i2: 0
+i3: +104
+i4: 201
+i5: 2_005
+```
+
+#### String `(str)`
+
+Basic strings can be represented using quotation marks (`""`). Keep in mind that some Unicode characters must be escaped:
+
+```
+hello: "world!\nYou may call me \"Jeff\""
+```
+
+#### Null `(null)`
+
++ Use the keyword `null`
+
+```
+key: null
+```
+
+#### Array `(arr)`
+
++ Arrays are declared using brackets (`{}`)
++ Elements are separated by commas (`,`), except for the last one
++ Empty arrays can be declared by leaving the brackets empty
++ Arrays can contain values of different types
+
+```
+environment: {
+	term: "linux",
+	histsize: 5000,
+	theme: "light",
+	package_manage: "pacman"
+}
+
+nested_array: {
+	{ 1, 0, 1 },
+	{ "h", "a", "l" , "l", "o" }
+}
+
+friends: {}
+```
+
+
+#### Boolean `(bool)`
+
++ must be either `true` or `false`
+
+```
+has_child: true
+likes_pineapple: false
+```
+
+#### Float `(float)`
+
+#### Object `(bool)`
+
++ Objects are declared using squared brackets (`[]`)
++ Empty objects can be declared leaving the brackets empty
+
+```
+user: [
+	name: "Michael Theodor Mouse",
+	age: 34,
+	married: false
+]
+
+spouse: []
+```
 
 ### Statements
 
