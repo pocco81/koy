@@ -270,7 +270,7 @@ ports: { 8000, 8001, 8002 }
 
 laptop: {
 	name: "Lenovo Thinkpad",
-	owner: ${user} << []
+	owner: ${user} << [
 		name: "Dominic Toretto"
 	],
 	ports: ${ports} << { 2: 8007 }
