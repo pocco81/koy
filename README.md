@@ -20,8 +20,9 @@
 ### 📣 Rant
 
 **Disclaimers**:
-+ these are just my thoughts on config/data serialization languages. Feel free to disagree (and to open an issue, I'm open to discussions.)
-+ all this is for the sake of creating a _bettter_ language, however I still haven't decided if I'll end up making this. Initially this repo was just meant to be a rant, but I don't know, maybe something good will come out of here!
+
+-   these are just my thoughts on config/data serialization languages. Feel free to disagree (and to open an issue, I'm open to discussions.)
+-   all this is for the sake of creating a _bettter_ language, however I still haven't decided if I'll end up making this. Initially this repo was just meant to be a rant, but I don't know, maybe something good will come out of here!
 
 With that said, let's continue...
 
@@ -107,3 +108,10 @@ device: {
 You can read Koy's docs [here](https://github.com/Pocco81/koy-lang/tree/main/docs)
 
 &nbsp;
+
+### 📜 ToDo
+
+-   [ ] Finish syntactic rules
+-   [ ] Write a simple parser (POC)
+-   [ ] Write syntax highlighting rules for an editor (i.e. (n)vim)
+-   [ ] Write ABNF grammar
