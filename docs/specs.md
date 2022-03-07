@@ -101,7 +101,7 @@ Comments are an integral part of any program, that's why you've got two ways to 
 
 ### Data Types
 
-A data type, in programming, is a classification that specifies which type of value a variable has and what type of mathematical, relational or logical operations can be applied to it without causing an error
+A data type, in programming, is a classification that specifies which type of value a variable has and what type of mathematical, relational or logical operations can be applied to it without causing an error. On Koy files they are infered, however they can still be specified and values can be converted according to your needs.
 
 #### Specifying/Converting Data Types
 
