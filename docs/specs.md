@@ -37,24 +37,33 @@ my-key: "value"
 
 </details>
 
--   Literal keys must be specified using backticks
+<details>
+    <summary>Literal keys must be specified using backticks</summary>
 
 ```
 `mainland!tv.קום`: "value"
 ```
 
--   Keys must not be empty
+</details>
+
+<details>
+    <summary>Keys cannot be empty</summary>
 
 ```
 : "value" //invalid
 ```
 
--   Keys cannot be duplicated
+</details>
+
+<details>
+    <summary>Keys cannot be duplicated</summary>
 
 ```
 hello: "world"
 hello: "momma!"
 ```
+
+</details>
 
 ##### Values
 
