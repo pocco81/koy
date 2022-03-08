@@ -69,34 +69,14 @@ This is **Koy**, just a proof of concept for what I ambition my _ideal_ data ser
 import "./settings/screen.koy"
 
 title: "Koy Example"
-meta: {
-	user: [
-		hostname: "lenovo thinkpad",
-		username: "pocco81"
-	],
-	environment: {
-		term: "linux",
-		histsize: 5000,
-		histignore: "&:ls:[bf]g:exit",
-		theme: "light",
-		package_manage: "pacman"
-	}
+
+user: {
+	name: "Michael Theodor Mouse",
+	age: 23,
+	married: true
 }
-device: {
-	colorscheme: "gruvbox-${theme}",
-	pkgs: "1465 ${package_manager}",
-	description: `Lorem ipsum dolor sit ${username}, elit.\n
-		Integer quis sapien varius, congue purus sed,\n
-		fringilla risus`,
-	available: true,
-	date_of_acquisition: 2011-05-27T07,
-	ip: "10.0.0.1",
-	average_temps: {
-		cpu: 79.5,
-		gpu: 72.0
-	},
-	ports: { 8000, 80001, 8002 }
-}
+
+ports: [ 8001, 8002, 8003 ]
 ```
 
 > Note: this file can be found [here](https://github.com/Pocco81/koy-lang/blob/main/example.koy)

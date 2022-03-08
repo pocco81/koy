@@ -143,15 +143,12 @@ weird_path: 'pc/\fds!fd/\&24324%!@'
 
 </tr>
 <tr>
-<td> <code>{}</code> </td>
+<td> <code>[]</code> </td>
 <td> Define an array </td>
 <td>
 
 ```
-metadata: {
-	OS: "Arch Linux",
-	Kernel: "linux-hardened"
-}
+hosts: [ "omega", "alpha", "gama" ]
 ```
 
 </td>
@@ -159,15 +156,15 @@ metadata: {
 
 </tr>
 <tr>
-<td> <code>[]</code> </td>
+<td> <code>{}</code> </td>
 <td> Define an object </td>
 <td>
 
 ```
-user: [
+user: {
 	name: "Michael Theodor Mouse",
 	age: 92
-]
+}
 ```
 
 </td>
