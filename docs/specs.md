@@ -19,7 +19,7 @@
 
 ### 😴 TL;DR
 
-Everything in a Koy file is a variable specified on a `key -> value` basis, for example: `hello: "world"`. If it makes sense to your data model, you may group them on objects (`{}`), which you can later put inside of arrays, because these operate on a `index -> value` basis. Furthermore, the data type of these values can be specified using `!!type` to enhance verbosity. These variables can be accessed using `${variable}`; on objects, however, you can use either the `${dot.convention}` or the `${brackets['convention']}`.
+Everything in a Koy file is a variable specified on a `key -> value` basis, for example: `hello: "world"`. If it makes sense to your data model, you may group them on objects (`{}`), which you can later put inside of arrays, because these operate on a `index -> value` basis. Furthermore, the data type of these values can be specified using `!!type` to enhance verbosity. These variables can be accessed using `${variable}`; on objects and arrays, however, you can use either the `${dot.convention}` or the `${brackets['convention']}`.
 
 &nbsp;
 
