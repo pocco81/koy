@@ -1,0 +1,50 @@
+   // test
+// fdskj fksdjfksd jfjsdlfh sjdhgfh sjhfdsfh hsdjf h
+// test
+
+/* test
+fsdf ;sdfk asdfsd f
+daf fa s
+f s
+
+f sdfs f
+sd
+ fsdfs
+ f
+*/
+
+hello: /* test */ "world" // hello worlllddDDDDD
+hello1: "world" // hello worlllddDDDDD
+temp_targets: {
+	cpu: 79.5,
+	case: 72.0
+}
+
+/* fdsfs*/
+
+
+/*
+hello3: "world" // hello worlllddDDDDD
+hello4: 12
+hello5: true
+hello6: [
+	8001,
+	8002,
+	8003
+]
+simple: """
+bonjur
+monsier cat
+
+"""
+*/
+
+/*
+// doesn't work
+person: {
+	name: "Miachel",
+	surnames: "Theodor Mouse",
+	age: 12,
+	married: false
+}
+*/
