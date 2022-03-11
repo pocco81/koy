@@ -4,7 +4,10 @@
 */
 
 // let's import some settings, shall we?
-import "./samples/s2.koy"
+import {
+	"./samples/s2.koy",
+	"./samples/s3.koy"
+}
 
 title: "Koy Example"
 

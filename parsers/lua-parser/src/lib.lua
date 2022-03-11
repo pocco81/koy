@@ -167,7 +167,7 @@ function KOY.decode(koy, options)
 
 	-- ========= PARSERS for real elements
 
-	local function parse_string()
+local function parse_string()
 		local quoteType = char() -- should be single or double quote
 
 		-- this is a multiline string if the next 2 characters match
@@ -181,8 +181,7 @@ function KOY.decode(koy, options)
 
 		while bounds() do
 			if multiline and char():match(nl) and str == "" then
-				-- skip line break line at the beginning of multiline string
-				step()
+				step() -- skip line break line at the beginning of multiline string
 			end
 
 			-- keep going until we encounter the quote character again
@@ -269,6 +268,7 @@ function KOY.decode(koy, options)
 			else
 				-- if we're not in a double-quoted string, just append it to our buffer raw and keep going
 				str = str .. char()
+				-- print("char: .. '" .. char() .. "'\t" .. str)
 				step()
 			end
 		end
@@ -490,13 +490,18 @@ function KOY.decode(koy, options)
 		return false
 	end
 
-	-- run over the string while possible
-	while is_iterable() do
-		-- skip any char in the `space_elements` table
+	--- skip any char in the `space_elements` table
+	local function skip_unreal_elements()
 		while not_real_element() do
 			unreal_element_parser_f()
 			-- unreal_element_parser_f = nil
 		end
+	end
+
+	-- run over the string while possible
+	while is_iterable() do
+
+		skip_unreal_elements()
 
 		if char() == ":" then -- variable
 			-- expect whitespaces with multilinecomments
@@ -641,6 +646,31 @@ function KOY.decode(koy, options)
 				local file_path = parse_string()["value"]
 				-- https://stackoverflow.com/questions/59561776/how-do-i-insert-a-string-into-another-string-in-lua
 				koy = koy:sub(1, cursor) .. "\n" .. dump_file(file_path) .. koy:sub(cursor+1)
+				buffer = ""
+			elseif char() == "{" then -- multiline import
+				step() -- skip opening brace
+				local file_paths = {}
+
+				while bounds() do
+					if char() == "'" or char() == '"' then
+						file_paths[#file_paths+1] = parse_string().value
+					elseif char() == "," then
+							step()
+							skip_unreal_elements()
+					elseif char() == "}" then
+						break
+					else
+						skip_unreal_elements()
+					end
+				end
+				step() -- skip closing brace
+
+				local length_until_file = cursor
+				for _, file_path in pairs(file_paths) do
+					local file = dump_file(file_path)
+					koy = koy:sub(1, length_until_file) .. "\n" .. file .. koy:sub(length_until_file+1)
+					length_until_file = length_until_file + file:len()
+				end
 				buffer = ""
 			end
 		end
