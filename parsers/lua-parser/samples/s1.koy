@@ -1,50 +1,17 @@
-   // test
-// fdskj fksdjfksd jfjsdlfh sjdhgfh sjhfdsfh hsdjf h
-// test
-
-/* test
-fsdf ;sdfk asdfsd f
-daf fa s
-f s
-
-f sdfs f
-sd
- fsdfs
- f
+/*
+	Hello world! this is a simple Koy document
+	and you are reading a multi-line comment :^)
 */
 
-hello: /* test */ "world" // hello worlllddDDDDD
-hello1: "world" // hello worlllddDDDDD
-temp_targets: {
-	cpu: 79.5,
-	case: 72.0
+// let's import some settings, shall we?
+/* import "./samples/s2.koy" */
+
+title: "Koy Example"
+
+user: {
+	name: "Michael Theodor Mouse",
+	age: 23,
+	married: true
 }
 
-/* fdsfs*/
-
-
-/*
-hello3: "world" // hello worlllddDDDDD
-hello4: 12
-hello5: true
-hello6: [
-	8001,
-	8002,
-	8003
-]
-simple: """
-bonjur
-monsier cat
-
-"""
-*/
-
-/*
-// doesn't work
-person: {
-	name: "Miachel",
-	surnames: "Theodor Mouse",
-	age: 12,
-	married: false
-}
-*/
+ports: [ 8001, 8002, 8003 ]

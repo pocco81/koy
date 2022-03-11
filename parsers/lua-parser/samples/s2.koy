@@ -1,0 +1,4 @@
+env: {
+	user: "pocco81",
+	editor: "neovim"
+}

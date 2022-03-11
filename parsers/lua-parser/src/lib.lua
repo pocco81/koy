@@ -86,32 +86,75 @@ function KOY.decode(koy, options)
 		return cursor <= koy:len()
 	end
 
-	local function skip(type)
-		if type == "cmt" then -- comment
-			if char() == "/" and char(1) == "/" then
-				while not char():match(nl) do
-					step()
-				end
-			end
-		elseif type == "mcmt" then -- multi-line comment
-			if char() == "/" and char(1) == "*" then
-				step((koy:find("*/", cursor + 2) + 2) - cursor)
-			end
-		elseif type == "cmtb" then -- comment on bound
-			if char() == "/" and char(1) == "/" then
-				while bounds() and not char():match(nl) do
-					step()
-				end
-			end
-		elseif type == "ws" then -- whitspace
-			-- move forward until the next non-whitespace character
-			while char():match(ws) do
+	-- ========= PARSERS for unreal elements
+	--- NOTE: Any parse_<.> func will parse the current char and any followign one that matches it
+
+	local function parse_newline()
+		while char():match(nl) do
+			step()
+		end
+	end
+
+	local function parse_tab()
+		while char():match("[\t]") do
+			step()
+		end
+	end
+
+	local function parse_whitespace()
+		while char():match(ws) do
+			step()
+		end
+	end
+
+	local function parse_sl_comment()
+		if char() == "/" and char(1) == "/" then
+			while not char():match(nl) do
 				step()
 			end
 		end
 	end
 
-	-- ========= PARSERS
+	local function parse_ml_comment()
+		if char() == "/" and char(1) == "*" then
+			step((koy:find("*/", cursor + 2) + 2) - cursor)
+		end
+	end
+
+	-- track whether the current key was quoted or not
+	local quoted_key = false
+
+	-- elements that can be ignored
+	local space_elements = {
+		["\n"] = parse_newline,
+		["\t"] = parse_tab,
+		[" "] = parse_whitespace,
+		[nl] = parse_newline,
+		["//"] = parse_sl_comment,
+		["/*"] = parse_ml_comment
+	}
+
+	-- get current character, but do something special if it's a forward slash (/)
+	local function get_current_element()
+		if char() == "/" then
+			return "/" .. char(1)
+		end
+
+		return char()
+	end
+
+	-- placeholder for a parser_func
+	local unreal_element_parser_f
+
+	local function not_real_element() -- real chars: anything that's not in the space_elements table
+		local f = space_elements[get_current_element()]
+		if f then
+			unreal_element_parser_f = f
+			return true
+		end
+	end
+
+	-- ========= PARSERS for real elements
 
 	local function parse_string()
 		local quoteType = char() -- should be single or double quote
@@ -295,7 +338,7 @@ function KOY.decode(koy, options)
 
 	function parse_array()
 		step() -- skip [
-		skip("ws")
+		parse_whitespace()
 
 		local arrayType
 		local array = {}
@@ -306,7 +349,7 @@ function KOY.decode(koy, options)
 			elseif char():match(nl) then
 				-- skip
 				step()
-				skip("ws")
+				parse_whitespace()
 			elseif char() == "#" then
 				while bounds() and not char():match(nl) do
 					step()
@@ -331,7 +374,7 @@ function KOY.decode(koy, options)
 				if char() == "," then
 					step()
 				end
-				skip("ws")
+				parse_whitespace()
 			end
 		end
 		step()
@@ -358,7 +401,7 @@ function KOY.decode(koy, options)
 				end
 
 				step() -- skip :
-				skip("ws")
+				parse_whitespace()
 
 				-- if char():match(nl) then
 				-- 	err("Newline in inline table")
@@ -367,7 +410,7 @@ function KOY.decode(koy, options)
 				local v = get_value().value
 				tbl[buffer] = v
 
-				skip("ws")
+				parse_whitespace()
 
 				if char() == "," then
 					step()
@@ -399,7 +442,7 @@ function KOY.decode(koy, options)
 			err("Invalid primitive")
 		end
 
-		skip("ws")
+		parse_whitespace()
 		if char() == "#" then
 			while not char():match(nl) do
 				step()
@@ -433,22 +476,18 @@ function KOY.decode(koy, options)
 	print("KOY STR: " .. koy:len())
 	print("-----------------\n\n")
 	while cursor <= koy:len() do
-		-- check if char is a comment char, then eat it and any following new lines
-		-- eat comments
-		-- skip("ws")
-		skip("cmt")
-		skip("mcmt")
-
-		if char():match(nl) then
-			-- skip
+		-- skip any char in the `space_elements` table
+		while(not_real_element()) do
+			unreal_element_parser_f()
+			-- unreal_element_parser_f = nil
 		end
 
 		if char() == ":" then -- variable
 			-- expect whitespaces with multilinecomments
 			step()
-			skip("ws")
-			skip("mcmt")
-			skip("ws")
+			parse_whitespace()
+			parse_ml_comment()
+			parse_whitespace()
 
 			-- trim key name
 			buffer = trim(buffer)
@@ -476,8 +515,12 @@ function KOY.decode(koy, options)
 			quoted_key = false
 
 			-- skip whitespace and comments
-			skip("ws")
-			skip("cmtb")
+			parse_whitespace()
+			if char() == "/" and char(1) == "/" then
+				while bounds() and not char():match(nl) do
+					step()
+				end
+			end
 
 			-- if there is anything left on this line after parsing a key and its value,
 			-- throw an error
