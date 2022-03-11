@@ -17,6 +17,17 @@ local escape_chars = {
 	["\\"] = "\\",
 }
 
+function string.insert(str1, str2, pos)
+	return str1:sub(1, pos) .. str2 .. str1:sub(pos + 1)
+end
+
+local function dump_file(file)
+	local f = assert(io.open(file, "rb"))
+	local content = f:read("*all")
+	f:close()
+	return content
+end
+
 -- converts KOY data into a lua table
 function KOY.decode(koy, options)
 	options = options or {}
@@ -131,7 +142,7 @@ function KOY.decode(koy, options)
 		[" "] = parse_whitespace,
 		[nl] = parse_newline,
 		["//"] = parse_sl_comment,
-		["/*"] = parse_ml_comment
+		["/*"] = parse_ml_comment,
 	}
 
 	-- get current character, but do something special if it's a forward slash (/)
@@ -414,8 +425,8 @@ function KOY.decode(koy, options)
 
 				if char() == "," then
 					step()
-				-- elseif char():match(nl) then
-				-- 	err("Newline in inline table")
+					-- elseif char():match(nl) then
+					-- 	err("Newline in inline table")
 				end
 
 				quoted = false
@@ -472,12 +483,17 @@ function KOY.decode(koy, options)
 	-- track whether the current key was quoted or not
 	local quoted_key = false
 
-	-- parse the document!
-	print("KOY STR: " .. koy:len())
-	print("-----------------\n\n")
-	while cursor <= koy:len() do
+	local function is_iterable()
+		if cursor <= koy:len() then
+			return true
+		end
+		return false
+	end
+
+	-- run over the string while possible
+	while is_iterable() do
 		-- skip any char in the `space_elements` table
-		while(not_real_element()) do
+		while not_real_element() do
 			unreal_element_parser_f()
 			-- unreal_element_parser_f = nil
 		end
@@ -614,6 +630,20 @@ function KOY.decode(koy, options)
 		buffer = buffer .. (char():match(nl) and "" or char())
 		-- print("buffer (" .. cursor .. "): '" .. buffer .. "'")
 		step()
+
+		-- assert keywords
+		if buffer == "import" then
+			parse_whitespace()
+			parse_ml_comment()
+			parse_whitespace()
+
+			if char() == '"' then --single file import
+				local file_path = parse_string()["value"]
+				-- https://stackoverflow.com/questions/59561776/how-do-i-insert-a-string-into-another-string-in-lua
+				koy = koy:sub(1, cursor) .. "\n" .. dump_file(file_path) .. koy:sub(cursor+1)
+				buffer = ""
+			end
+		end
 	end
 
 	return out
