@@ -170,13 +170,6 @@ function KOY.decode(koy, options)
 
 	local vmp = {} -- var_match_placeholder
 
-	-- local function parse_variable(str, in_string) {
-	-- 	in_string = in_string or true
-	-- 	-- if in_string == true then
-	-- 	-- 	str:find("[^\\]%$%{(.-)%}")
-	-- 	-- end
-	-- }
-
 	-- by definition, a variable in Koy looks like: ${var_name} and be escaped using \
 	local function var_avaiable(str)
 		--[[ NOTE:
@@ -194,17 +187,43 @@ function KOY.decode(koy, options)
 		return false
 	end
 
-	local function parse_variables(str)
-		local parsed_str = str
-		while (var_avaiable(parsed_str)) do
-			local substitution = tostring(load("return obj." .. vmp[3])())
-			if substitution == "nil" then
+	-- will parse all variables in a string if given or the variable as the value of the previous key if not (e.g. key: ${this})
+	local function parse_variable(str)
+		-- in-string varaibles
+		if str ~= nil then
+			local parsed_str = str
+			while (var_avaiable(parsed_str)) do
+				local substitution = tostring(load("return obj." .. vmp[3])())
+				if substitution == "nil" then
+					err("bad substitution. Variable '" .. vmp[3] .. "' is not defined")
+				end
+				parsed_str = parsed_str:sub(1, vmp[1]) .. substitution .. parsed_str:sub(vmp[2] + 1, parsed_str:len())
+			end
+
+			return parsed_str
+		else -- variable as value of a key
+			local literal_var = ""
+			if char(1) == "{" then
+				step(2) -- steps over $ and {, ends up at .
+				-- "%}" .. nl
+				while bounds() do
+					if char():match(nl) then
+						err("Variables cannot have line breaks")
+					elseif char():match("%}") then
+						step()
+						break
+					else
+						literal_var = literal_var .. char()
+						step()
+					end
+				end
+			end
+			local substitution = load("return obj." .. literal_var)()
+			if substitution == nil then
 				err("bad substitution. Variable '" .. vmp[3] .. "' is not defined")
 			end
-			parsed_str = parsed_str:sub(1, vmp[1]) .. substitution .. parsed_str:sub(vmp[2] + 1, parsed_str:len())
+			return { value = substitution, type = type(substitution) }
 		end
-
-		return parsed_str
 	end
 
 	local function parse_string()
@@ -314,7 +333,7 @@ function KOY.decode(koy, options)
 		end
 
 		-- return { value = str, type = "string" }
-		return { value = parse_variables(str), type = "string" }
+		return { value = parse_variable(str), type = "string" }
 	end
 
 	local function parse_number()
@@ -511,7 +530,7 @@ function KOY.decode(koy, options)
 		elseif char():match("[%+%-0-9]") then
 			return parse_number()
 		elseif char():match("%$") then
-			return parse_number()
+			return parse_variable()
 		elseif char() == "[" then
 			return parse_array()
 		elseif char() == "{" then

@@ -12,7 +12,7 @@ import {
 }
 
 title: "Koy Example"
-
+real_titleeeeeeee: ${title}
 test: "hello${some_var}"
 
 user: {
