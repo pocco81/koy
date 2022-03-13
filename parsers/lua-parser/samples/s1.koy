@@ -13,6 +13,7 @@ import {
 
 title: "Koy Example"
 real_titleeeeeeee: ${title}
+another_env: ${env}
 test: "hello${some_var}"
 
 user: {
