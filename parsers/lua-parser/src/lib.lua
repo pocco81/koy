@@ -53,7 +53,7 @@ function KOY.decode(koy, options)
 	local buffer = "" -- stores text dat
 	local cursor = 1 -- the current location within the string to parse
 	local out = {} -- the output table
-	local obj = out -- the current table to write to
+	_G.obj = out -- the current table to write to
 
 	-- ========= Standard Utilities
 
@@ -128,6 +128,7 @@ function KOY.decode(koy, options)
 
 	local function parse_ml_comment()
 		if char() == "/" and char(1) == "*" then
+			-- find() returns two values but when operated on it uses only the first one
 			step((koy:find("*/", cursor + 2) + 2) - cursor)
 		end
 	end
@@ -167,7 +168,46 @@ function KOY.decode(koy, options)
 
 	-- ========= PARSERS for real elements
 
-local function parse_string()
+	local vmp = {} -- var_match_placeholder
+
+	-- local function parse_variable(str, in_string) {
+	-- 	in_string = in_string or true
+	-- 	-- if in_string == true then
+	-- 	-- 	str:find("[^\\]%$%{(.-)%}")
+	-- 	-- end
+	-- }
+
+	-- by definition, a variable in Koy looks like: ${var_name} and be escaped using \
+	local function var_avaiable(str)
+		--[[ NOTE:
+			lua doesn't support proper regex, so the equivalent of:
+				[^\\]\$\{(.+?)\}
+			is in lua:
+				[^\\]%$%{(.-)%}
+		--]]
+		-- match a literal $ that is after anything but a \, followed by a {, followed by any text until you find the first }
+		local beginning, ending, match = str:find("[^\\]%$%{(.-)%}")
+		if beginning ~= nil and ending ~= nil and match ~= "" then
+			vmp = { [1] = beginning, [2] = ending, [3] = match }
+			return true
+		end
+		return false
+	end
+
+	local function parse_variables(str)
+		local parsed_str = str
+		while (var_avaiable(parsed_str)) do
+			local substitution = tostring(load("return obj." .. vmp[3])())
+			if substitution == "nil" then
+				err("bad substitution. Variable '" .. vmp[3] .. "' is not defined")
+			end
+			parsed_str = parsed_str:sub(1, vmp[1]) .. substitution .. parsed_str:sub(vmp[2] + 1, parsed_str:len())
+		end
+
+		return parsed_str
+	end
+
+	local function parse_string()
 		local quoteType = char() -- should be single or double quote
 
 		-- this is a multiline string if the next 2 characters match
@@ -273,7 +313,8 @@ local function parse_string()
 			end
 		end
 
-		return { value = str, type = "string" }
+		-- return { value = str, type = "string" }
+		return { value = parse_variables(str), type = "string" }
 	end
 
 	local function parse_number()
@@ -468,6 +509,8 @@ local function parse_string()
 		if char() == '"' or char() == "'" then
 			return parse_string()
 		elseif char():match("[%+%-0-9]") then
+			return parse_number()
+		elseif char():match("%$") then
 			return parse_number()
 		elseif char() == "[" then
 			return parse_array()

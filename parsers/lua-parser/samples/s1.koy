@@ -3,6 +3,8 @@
 	and you are reading a multi-line comment :^)
 */
 
+some_var: "world!"
+
 // let's import some settings, shall we?
 import {
 	"./samples/s2.koy",
@@ -10,6 +12,8 @@ import {
 }
 
 title: "Koy Example"
+
+test: "hello${some_var}"
 
 user: {
 	name: "Michael Theodor Mouse",
