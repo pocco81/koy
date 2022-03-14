@@ -91,7 +91,4 @@ You can read Koy's docs [here](https://github.com/Pocco81/koy-lang/tree/main/doc
 
 ### 📜 ToDo
 
--   [ ] Finish syntactic rules
--   [ ] Write a simple parser (POC)
--   [ ] Write syntax highlighting rules for an editor (i.e. (n)vim)
--   [ ] Write ABNF grammar
+Check out the list [here](https://github.com/Pocco81/koy-lang/projects/1).
