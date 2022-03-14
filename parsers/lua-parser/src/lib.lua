@@ -186,7 +186,7 @@ function KOY.decode(koy, options)
 	-- ========= PARSERS for real elements
 
 	-- delcaring before because some of them need each other often
-	local parse_string, parse_number, parse_array, parse_object, parse_boolean, parse_variable, get_value
+	local parse_string, parse_number, parse_array, parse_object, parse_constant, parse_variable, get_value
 
 	local vmp = {} -- var_match_placeholder
 	-- by definition, a variable in Koy looks like: ${var_name} and be escaped using \
@@ -518,6 +518,8 @@ function KOY.decode(koy, options)
 
 				step() -- skip :
 				parse_whitespace()
+				parse_ml_comment()
+				parse_whitespace()
 
 				-- if char():match(nl) then
 				-- 	err("Newline in inline table")
@@ -546,16 +548,22 @@ function KOY.decode(koy, options)
 		return { value = tbl, type = "array" }
 	end
 
-	function parse_boolean()
+	-- parses: true, false and null
+	function parse_constant()
 		local v
-		if koy:sub(cursor, cursor + 3) == "true" then
+		if koy:sub(cursor, cursor + 3) == "null" then
+			step(4)
+			-- returning "nil" instead of nil:
+			-- https://stackoverflow.com/questions/40441508/how-to-represent-nil-in-a-table
+			v = { value = "nil", type = "nil" }
+		elseif koy:sub(cursor, cursor + 3) == "true" then
 			step(4)
 			v = { value = true, type = "boolean" }
 		elseif koy:sub(cursor, cursor + 4) == "false" then
 			step(5)
 			v = { value = false, type = "boolean" }
 		else
-			err("Invalid primitive")
+			err("Invalid constant")
 		end
 
 		parse_whitespace()
@@ -581,7 +589,7 @@ function KOY.decode(koy, options)
 		elseif char() == "{" then
 			return parse_object()
 		else
-			return parse_boolean()
+			return parse_constant()
 		end
 		-- date regex (for possible future support):
 		-- %d%d%d%d%-[0-1][0-9]%-[0-3][0-9]T[0-2][0-9]%:[0-6][0-9]%:[0-6][0-9][Z%:%+%-%.0-9]*

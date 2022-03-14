@@ -1,9 +1,4 @@
-person1: {
-	name: "Michael Theodor Mouse",
-	age: 123
-}
-
-person2: ${person1} << {
-	age: 1,
-	number: false
+person: {
+	name: "michael theodor mouse",
+	age: null
 }
