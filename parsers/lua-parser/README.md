@@ -28,7 +28,7 @@ end
 
 ### ✨ Features
 
-+ `decode(<string>)`: receives a Koy string and transforms into Lua table (object)
++ `decode(<string>)`: receives a Koy string and transforms it into Lua table (object)
 + `encode(<string>)`: transforms Lua table (object) into valid Koy
 
 &nbsp;
@@ -41,7 +41,7 @@ end
 
 ### 🔧 Testing
 
-There is currently just one very simple test that you can execute like this:
+There is currently just one very simple test that you can execute like so:
 
 ```bash
 lua test.lua
