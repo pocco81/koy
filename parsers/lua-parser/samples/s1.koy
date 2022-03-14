@@ -1,25 +1,13 @@
-/*
-	Hello world! this is a simple Koy document
-	and you are reading a multi-line comment :^)
-*/
-
-some_var: "world!"
-
-// let's import some settings, shall we?
-import {
-	"./samples/s2.koy",
-	"./samples/s3.koy"
-}
-
-title: "Koy Example"
-real_titleeeeeeee: ${title}
-another_env: ${env}
-test: "hello${some_var}"
-
-user: {
+person1: {
 	name: "Michael Theodor Mouse",
-	age: 23,
-	married: true
+	age: 123
 }
 
-ports: [ 8001, 8002, 8003 ]
+/* person2: ${person1} << { */
+/* 	name: "LOL", */
+/* 	code: 1 */
+/* } */
+
+person2: ${person1} << {
+	age: 1
+}

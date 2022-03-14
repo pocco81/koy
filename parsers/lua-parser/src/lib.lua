@@ -21,6 +21,15 @@ function string.insert(str1, str2, pos)
 	return str1:sub(1, pos) .. str2 .. str1:sub(pos + 1)
 end
 
+-- taken from: https://stackoverflow.com/questions/640642/how-do-you-copy-a-lua-table-by-value
+function table.shallow_copy(t)
+  local t2 = {}
+  for k,v in pairs(t) do
+    t2[k] = v
+  end
+  return t2
+end
+
 local function dump_file(file)
 	local f = assert(io.open(file, "rb"))
 	local content = f:read("*all")
@@ -166,10 +175,20 @@ function KOY.decode(koy, options)
 		end
 	end
 
+	--- skip any char in the `space_elements` table
+	local function skip_unreal_elements()
+		while not_real_element() do
+			unreal_element_parser_f()
+			-- unreal_element_parser_f = nil
+		end
+	end
+
 	-- ========= PARSERS for real elements
 
-	local vmp = {} -- var_match_placeholder
+	-- delcaring before because some of them need each other often
+	local parse_string, parse_number, parse_array, parse_inline_table, parse_boolean, parse_variable, get_value
 
+	local vmp = {} -- var_match_placeholder
 	-- by definition, a variable in Koy looks like: ${var_name} and be escaped using \
 	local function var_avaiable(str)
 		--[[ NOTE:
@@ -188,11 +207,11 @@ function KOY.decode(koy, options)
 	end
 
 	-- will parse all variables in a string if given or the variable as the value of the previous key if not (e.g. key: ${this})
-	local function parse_variable(str)
+	function parse_variable(str)
 		-- in-string varaibles
 		if str ~= nil then
 			local parsed_str = str
-			while (var_avaiable(parsed_str)) do
+			while var_avaiable(parsed_str) do
 				local substitution = tostring(load("return obj." .. vmp[3])())
 				if substitution == "nil" then
 					err("bad substitution. Variable '" .. vmp[3] .. "' is not defined")
@@ -218,15 +237,43 @@ function KOY.decode(koy, options)
 					end
 				end
 			end
-			local substitution = load("return obj." .. literal_var)()
+			-- for some reason, loading the `obj` into string directly makes `substitution` a pointer
+			-- (i.e. if we change a value on `substitution`, `obj` will also have that change)
+			-- so here its loaded and then its values are copied into `substitution`
+			local substitution = table.shallow_copy(load("return obj.person1")())
 			if substitution == nil then
 				err("bad substitution. Variable '" .. vmp[3] .. "' is not defined")
 			end
-			return { value = substitution, type = type(substitution) }
+
+			local substitution_type = type(substitution)
+
+			if substitution_type == "table" then
+				if not char():match(nl) then
+					local overwrites
+					while not char():match(nl) do
+						if char() == "<" and char(1) == "<" then
+							step(2) -- <<-
+							skip_unreal_elements()
+							if char() == "{" then
+								overwrites = parse_inline_table()
+								-- check this
+								break
+							end
+						end
+						step()
+					end
+
+					for k, v in pairs(overwrites.value) do
+						substitution[k] = v
+					end
+				end
+			end
+
+			return { value = substitution, type = substitution_type }
 		end
 	end
 
-	local function parse_string()
+	function parse_string()
 		local quoteType = char() -- should be single or double quote
 
 		-- this is a multiline string if the next 2 characters match
@@ -336,7 +383,7 @@ function KOY.decode(koy, options)
 		return { value = parse_variable(str), type = "string" }
 	end
 
-	local function parse_number()
+	function parse_number()
 		local num = ""
 		local exp
 		local date = false
@@ -405,8 +452,6 @@ function KOY.decode(koy, options)
 		return { value = num * 10 ^ exp, type = "float" }
 	end
 
-	local parse_array, get_value
-
 	function parse_array()
 		step() -- skip [
 		parse_whitespace()
@@ -453,7 +498,7 @@ function KOY.decode(koy, options)
 		return { value = array, type = "array" }
 	end
 
-	local function parse_inline_table()
+	function parse_inline_table()
 		step() -- skip opening brace
 
 		local buffer = ""
@@ -501,7 +546,7 @@ function KOY.decode(koy, options)
 		return { value = tbl, type = "array" }
 	end
 
-	local function parse_boolean()
+	function parse_boolean()
 		local v
 		if koy:sub(cursor, cursor + 3) == "true" then
 			step(4)
@@ -552,17 +597,8 @@ function KOY.decode(koy, options)
 		return false
 	end
 
-	--- skip any char in the `space_elements` table
-	local function skip_unreal_elements()
-		while not_real_element() do
-			unreal_element_parser_f()
-			-- unreal_element_parser_f = nil
-		end
-	end
-
 	-- run over the string while possible
 	while is_iterable() do
-
 		skip_unreal_elements()
 
 		if char() == ":" then -- variable
@@ -707,7 +743,7 @@ function KOY.decode(koy, options)
 			if char() == '"' then --single file import
 				local file_path = parse_string()["value"]
 				-- https://stackoverflow.com/questions/59561776/how-do-i-insert-a-string-into-another-string-in-lua
-				koy = koy:sub(1, cursor) .. "\n" .. dump_file(file_path) .. koy:sub(cursor+1)
+				koy = koy:sub(1, cursor) .. "\n" .. dump_file(file_path) .. koy:sub(cursor + 1)
 				buffer = ""
 			elseif char() == "{" then -- multiline import
 				step() -- skip opening brace
@@ -715,10 +751,10 @@ function KOY.decode(koy, options)
 
 				while bounds() do
 					if char() == "'" or char() == '"' then
-						file_paths[#file_paths+1] = parse_string().value
+						file_paths[#file_paths + 1] = parse_string().value
 					elseif char() == "," then
-							step()
-							skip_unreal_elements()
+						step()
+						skip_unreal_elements()
 					elseif char() == "}" then
 						break
 					else
@@ -730,7 +766,7 @@ function KOY.decode(koy, options)
 				local length_until_file = cursor
 				for _, file_path in pairs(file_paths) do
 					local file = dump_file(file_path)
-					koy = koy:sub(1, length_until_file) .. "\n" .. file .. koy:sub(length_until_file+1)
+					koy = koy:sub(1, length_until_file) .. "\n" .. file .. koy:sub(length_until_file + 1)
 					length_until_file = length_until_file + file:len()
 				end
 				buffer = ""
