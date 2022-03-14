@@ -13,7 +13,7 @@ local koy_parser = require("koy")
 local sample = [[
 person: {
 	name: "Michael Theodor Mouse",
-	age: null
+	age: 38
 }
 ]]
 
