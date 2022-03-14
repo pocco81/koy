@@ -24,11 +24,25 @@ for k,v in pairs(koy_table) do
 end
 ```
 
+&nbsp;
+
 ### ✨ Features
 
 + `decode(<string>)`: receives a Koy string and transforms into Lua table (object)
 + `encode(<string>)`: transforms Lua table (object) into valid Koy
 
+&nbsp;
+
 ### 🍣 Caveats
 
 + `null` values are stored as `"nil"` (in a string) because there is no way to represent them with their actual keyword (`nil`) in a Lua table. See [this](https://stackoverflow.com/questions/40441508/how-to-represent-nil-in-a-table) Stackoverflow question.
+
+&nbsp;
+
+### 🔧 Testing
+
+There is currently just one very simple test that you can execute like this:
+
+```bash
+lua test.lua
+```
