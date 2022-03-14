@@ -186,7 +186,7 @@ function KOY.decode(koy, options)
 	-- ========= PARSERS for real elements
 
 	-- delcaring before because some of them need each other often
-	local parse_string, parse_number, parse_array, parse_inline_table, parse_boolean, parse_variable, get_value
+	local parse_string, parse_number, parse_array, parse_object, parse_boolean, parse_variable, get_value
 
 	local vmp = {} -- var_match_placeholder
 	-- by definition, a variable in Koy looks like: ${var_name} and be escaped using \
@@ -255,7 +255,7 @@ function KOY.decode(koy, options)
 							step(2) -- <<-
 							skip_unreal_elements()
 							if char() == "{" then
-								overwrites = parse_inline_table()
+								overwrites = parse_object()
 								-- check this
 								break
 							end
@@ -498,7 +498,7 @@ function KOY.decode(koy, options)
 		return { value = array, type = "array" }
 	end
 
-	function parse_inline_table()
+	function parse_object()
 		step() -- skip opening brace
 
 		local buffer = ""
@@ -579,7 +579,7 @@ function KOY.decode(koy, options)
 		elseif char() == "[" then
 			return parse_array()
 		elseif char() == "{" then
-			return parse_inline_table()
+			return parse_object()
 		else
 			return parse_boolean()
 		end
@@ -774,6 +774,7 @@ function KOY.decode(koy, options)
 		end
 	end
 
+	_G.obj = nil -- unset obj so as to not pollute the global scope
 	return out
 end
 

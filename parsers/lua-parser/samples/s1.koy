@@ -3,11 +3,7 @@ person1: {
 	age: 123
 }
 
-/* person2: ${person1} << { */
-/* 	name: "LOL", */
-/* 	code: 1 */
-/* } */
-
 person2: ${person1} << {
-	age: 1
+	age: 1,
+	number: false
 }
