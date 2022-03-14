@@ -28,7 +28,7 @@ end
 
 ### ✨ Features
 
-+ `decode(<string>)`: receives a Koy string and transforms it into Lua table (object)
++ `decode(<string>)`: receives a Koy string and transforms it into a Lua table (object)
 + `encode(<string>)`: transforms Lua table (object) into valid Koy
 
 &nbsp;
