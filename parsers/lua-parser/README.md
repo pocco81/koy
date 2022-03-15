@@ -36,6 +36,7 @@ end
 ### 🍣 Caveats
 
 + `null` values are stored as `"nil"` (in a string) because there is no way to represent them with their actual keyword (`nil`) in a Lua table. See [this](https://stackoverflow.com/questions/40441508/how-to-represent-nil-in-a-table) Stackoverflow question.
++ datatypes such as `obj`, `arr` and `nil` are not valid candidates for being casted
 
 &nbsp;
 
