@@ -81,12 +81,12 @@ ports: [ 8001, 8002, 8003 ]
 
 ### 🪴 Index
 
-+ Library Implementations
-+ IDE/DE Support
-+ Documentation
-+ ToDo List
-+ FAQ
-+ License
++ [Library Implementations](#-library-implementations)
++ [IDE/DE Support](#%EF%B8%8F-idede-support)
++ [Documentation](#-documentation)
++ [ToDo List](#-todo-list)
++ [FAQ](#-faq)
++ [License](#-license)
 
 &nbsp;
 
@@ -96,7 +96,7 @@ ports: [ 8001, 8002, 8003 ]
 
 The following is a list of library implementations for Koy: 
 
-- Lua: [`lua-parser`](https://github.com/Pocco81/koy-lang/tree/main/parsers/lua-parser)
+- Lua: [`parser`](https://github.com/Pocco81/koy-lang/tree/main/parsers/lua-parser)
 
 &nbsp;
 
