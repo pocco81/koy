@@ -77,6 +77,20 @@ ports: [ 8001, 8002, 8003 ]
         -   Float (`flt`)
         -   Object (`obj`)
 
+&nbsp;
+
+### 🎁 Documentation
+
+You can read Koy's docs [here](https://github.com/Pocco81/koy-lang/tree/main/docs)
+
+&nbsp;
+
+### 🧻 ToDo
+
+Check out the list [here](https://github.com/Pocco81/koy-lang/projects/1).
+
+&nbsp;
+
 ### 🙋 FAQ
 
 + _**Why?**_
@@ -91,20 +105,6 @@ With that said, let's continue...
 I like how XML is useful for porting data across platforms, however I dislike the fact that it "repeats itself" too much (opening and closing tags), so often times it feels visually jammed. JSON, however, is vastly nicer on the eyes due to its notable hierarchical structure. But now, looking more at its syntax I can't help but feel like it's _too strict_(?) (numbers and longstrings are a nightmare); apart from that, given that JSON is a data-only-type-of-config-language, nice stuff such as comments are not baked into it. On the other end of the spectrum, TOML, which focuses on being easy to read due to obvious sematic sucks for deeply nested _data_. The `.` convention simply doesn't cut it for me. Furthermore, something that I wish any of these included by default is native support for variable placeholders. I know, YAML has aliases and anchors which sorta do the job? however these simply don't work as such because they can't be inserted arbitrarily throughout a YAML file, which sucks too. Speaking about YAML, it is unnecessarily complex. Like, c'mon? 4 ways to define a simple boolean?
 
 **Koy**, in a sense, is just a proof of concept for what I ambition my _ideal_ data serialization language to look like.
-
-&nbsp;
-
-### 🎁 Documentation
-
-You can read Koy's docs [here](https://github.com/Pocco81/koy-lang/tree/main/docs)
-
-&nbsp;
-
-### 🧻 ToDo
-
-Check out the list [here](https://github.com/Pocco81/koy-lang/projects/1).
-
-&nbsp;
 
 ### 📜 License
 
