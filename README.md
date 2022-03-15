@@ -17,6 +17,46 @@
 
 &nbsp;
 
+<p align="center">
+	Koy is a new flexible and feature-rich data serialization language; easy for you, your dog and your average 5 year-old. Its design allows easy-to-write parsers (in multiple languages) to map the data to hash tables.
+</p>
+
+&nbsp;
+
+### 🌤️ Example
+
+```koy
+/*
+	Hello world! this is a simple Koy document
+	and you are reading a multi-line comment :^)
+*/
+
+// let's import some settings, shall we?
+import "./settings/screen.koy"
+
+title: "Koy Example"
+
+person: {
+	name: "Michael Theodor Mouse",
+	age: 34
+}
+
+laptop: {
+	owner: ${person} << {
+		username: "mickey1234"
+	},
+	temp:int 203.04,
+	married: true,
+	document: ${title}
+}
+
+ports: [ 8001, 8002, 8003 ]
+```
+
+> As it can be seen, Koy isn't only good for deeply nested data, but also for avoiding an unambiguous use of it, managing their data-types and modularizing them.
+
+&nbsp;
+
 ### 📣 Rant
 
 **Disclaimers**:
