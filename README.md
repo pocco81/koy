@@ -77,7 +77,9 @@ ports: [ 8001, 8002, 8003 ]
         -   Float (`flt`)
         -   Object (`obj`)
 
-### 📣 Rant
+### 🙋 FAQ
+
++ _**Why?**_
 
 **Disclaimers**:
 
@@ -88,58 +90,7 @@ With that said, let's continue...
 
 I like how XML is useful for porting data across platforms, however I dislike the fact that it "repeats itself" too much (opening and closing tags), so often times it feels visually jammed. JSON, however, is vastly nicer on the eyes due to its notable hierarchical structure. But now, looking more at its syntax I can't help but feel like it's _too strict_(?) (numbers and longstrings are a nightmare); apart from that, given that JSON is a data-only-type-of-config-language, nice stuff such as comments are not baked into it. On the other end of the spectrum, TOML, which focuses on being easy to read due to obvious sematic sucks for deeply nested _data_. The `.` convention simply doesn't cut it for me. Furthermore, something that I wish any of these included by default is native support for variable placeholders. I know, YAML has aliases and anchors which sorta do the job? however these simply don't work as such because they can't be inserted arbitrarily throughout a YAML file, which sucks too. Speaking about YAML, it is unnecessarily complex. Like, c'mon? 4 ways to define a simple boolean?
 
-&nbsp;
-
-### 🙋 Proposal
-
-[Data serialization](https://hazelcast.com/glossary/serialization/) languages should be simple as in easy to read and write, easy to structure, not visually obstrusive, feature rich, maintainable, verbose and have obvious semantincs understandable by your average 5 year-old.
-
-#### 📄 Specific Features
-
--   Variables!
--   Comments! (I'm looking at you JSON)
--   Support a wide-array of data types, such as:
-    -   String
-    -   Integer
-    -   Float
-    -   Boolean
-    -   Object
-    -   Array (key-value, key)
-    -   Data and Times
--   Import statement (modularization!)
-
-#### ☄️ Non-Specific Features
-
--   The name must be short. People don't realize it yet but the `0.000000001` milliseconds they save every time they type `conf.ini` vs `conf.json` could be used to spend more time with your loved ones!
--   Have a standard _convention_ of errors (e.g. `NegativeArraySizeException` in Java)
-
-&nbsp;
-
-### 👷 Initiative
-
-This is **Koy**, just a proof of concept for what I ambition my _ideal_ data serialization language to look like:
-
-```
-/*
-	Hello world! this is a simple Koy document
-	and you are reading a multi-line comment :^)
-*/
-
-// let's import some settings, shall we?
-import "./settings/screen.koy"
-
-title: "Koy Example"
-
-user: {
-	name: "Michael Theodor Mouse",
-	age: 23,
-	married: true
-}
-
-ports: [ 8001, 8002, 8003 ]
-```
-
-> Note: this file can be found [here](https://github.com/Pocco81/koy-lang/blob/main/example.koy)
+**Koy**, in a sense, is just a proof of concept for what I ambition my _ideal_ data serialization language to look like.
 
 &nbsp;
 
@@ -149,6 +100,21 @@ You can read Koy's docs [here](https://github.com/Pocco81/koy-lang/tree/main/doc
 
 &nbsp;
 
-### 📜 ToDo
+### 🧻 ToDo
 
 Check out the list [here](https://github.com/Pocco81/koy-lang/projects/1).
+
+&nbsp;
+
+### 📜 License
+
+Koy is released under the MIT license, which grants the following permissions:
+
+-   Commercial use
+-   Distribution
+-   Modification
+-   Private use
+
+For more convoluted language, see the [LICENSE](https://github.com/koy-lang/koy-lang/blob/main/LICENSE).
+
+&nbsp;
