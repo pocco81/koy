@@ -59,10 +59,10 @@ ports: [ 8001, 8002, 8003 ]
 
 ### 📋 Characteristics
 
--   **Friendly Syntax with obvious semantics**: everything in a Koy file works on a `key` -> `value` basis, therefore you can nest data as much as you want and no matter what, it's easy to comprehend at a glance.
+-   **Friendly Syntax with Obvious Semantics**: everything in a Koy file works on a `key` -> `value` basis, therefore you can nest data as much as you want and no matter what, it's easy to comprehend at a glance.
 -   **Standard Errors**: Koy defines a list of semantic errors throwable for when the parser screams _"oh crap! what is this?"_. This way developers get an implementation-agnostic definition that helps them debug their program's config faster.
 -   **Unambiguous**: Koy has one, and only _ONE_ way to define each thing, because doing the opposite would increase the overall complexity of the language.
--   **Feature rich:** Koy supports:
+-   **Feature Rich:** Koy supports:
     -   comments
     -   variables
     -   type casting & coercion
