@@ -18,7 +18,7 @@
 &nbsp;
 
 <p align="center">
-	Koy is a new flexible and feature-rich data serialization language; easy for you, your dog and your average 5 year-old. Its design allows easy-to-write parsers (in multiple languages) to map the data to hash tables.
+	Koy is a new flexible and feature-rich data serialization language; easy for you, your dog and your average 5 year-old. Its design focused on being visually unobstrusive while keeping an overall sense of verbosity, allows easy-to-write parsers (in multiple languages) to effortlessly map the data to hash tables.
 </p>
 
 &nbsp;
@@ -53,9 +53,29 @@ laptop: {
 ports: [ 8001, 8002, 8003 ]
 ```
 
-> As it can be seen, Koy isn't only good for deeply nested data, but also for avoiding an unambiguous use of it, managing their data-types and modularizing them.
+> As shown here, Koy isn't only good for deeply nested data, but also for avoiding an unambiguous use of it, managing their data-types and modularizing them.
 
 &nbsp;
+
+### 📋 Characteristics
+
+-   **Friendly Syntax with obvious semantics**: everything in a Koy file works on a `key` -> `value` basis, therefore you can nest data as much as you want and no matter what, it's easy to comprehend at a glance.
+-   **Standard Errors**: Koy defines a list of semantic errors throwable for when the parser screams _"oh crap! what is this?"_. This way developers get an implementation-agnostic definition that helps them debug their program's config faster.
+-   **Unambiguous**: Koy has one, and only _ONE_ way to define each thing, because doing the opposite would increase the overall complexity of the language.
+-   **Feature rich:** Koy supports:
+    -   comments
+    -   variables
+    -   type casting & coercion
+    -   data overwritting
+    -   importing other koy files
+    -   native data-types:
+        -   Integer (`int`)
+        -   String (`str`)
+        -   Null (`null`)
+        -   Array (`arr`)
+        -   Boolean (`bool`)
+        -   Float (`flt`)
+        -   Object (`obj`)
 
 ### 📣 Rant
 
