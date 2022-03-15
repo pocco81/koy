@@ -23,11 +23,15 @@ end
 
 -- taken from: https://stackoverflow.com/questions/640642/how-do-you-copy-a-lua-table-by-value
 function table.shallow_copy(t)
-  local t2 = {}
-  for k,v in pairs(t) do
-    t2[k] = v
-  end
-  return t2
+	if type(t) == "table" then
+		local t2 = {}
+		for k, v in pairs(t) do
+			t2[k] = v
+		end
+		return t2
+	else
+		return t
+	end
 end
 
 local function dump_file(file)
@@ -186,7 +190,8 @@ function KOY.decode(koy, options)
 	-- ========= PARSERS for real elements
 
 	-- delcaring before because some of them need each other often
-	local parse_string, parse_number, parse_array, parse_object, parse_constant, parse_variable, get_value
+	local parse_string, parse_number, parse_array, parse_object, parse_constant, parse_variable, parse_datatype
+	local cast_datatype, get_value
 
 	local vmp = {} -- var_match_placeholder
 	-- by definition, a variable in Koy looks like: ${var_name} and be escaped using \
@@ -240,7 +245,8 @@ function KOY.decode(koy, options)
 			-- for some reason, loading the `obj` into string directly makes `substitution` a pointer
 			-- (i.e. if we change a value on `substitution`, `obj` will also have that change)
 			-- so here its loaded and then its values are copied into `substitution`
-			local substitution = table.shallow_copy(load("return obj.person1")())
+			-- shallow_copy() will also return the element if it's not a table
+			local substitution = table.shallow_copy(load("return obj." .. literal_var)())
 			if substitution == nil then
 				err("bad substitution. Variable '" .. vmp[3] .. "' is not defined")
 			end
@@ -517,6 +523,7 @@ function KOY.decode(koy, options)
 				end
 
 				step() -- skip :
+				local data_type = parse_datatype()
 				parse_whitespace()
 				parse_ml_comment()
 				parse_whitespace()
@@ -526,7 +533,18 @@ function KOY.decode(koy, options)
 				-- end
 
 				local v = get_value().value
-				tbl[buffer] = v
+
+				if v then
+					local value = v
+					if data_type ~= nil then
+						local casted_type = cast_datatype(value, data_type)
+						if casted_type ~= nil then
+							value = casted_type
+						end
+					end
+
+					tbl[buffer] = value
+				end
 
 				parse_whitespace()
 
@@ -576,6 +594,82 @@ function KOY.decode(koy, options)
 		return v
 	end
 
+	-- get accurate datatype
+	local function datatype(var)
+		local type = type(var)
+		if type == "number" then
+			return math.type(var)
+		end
+		return type
+	end
+
+	-- cast datatypes
+	function cast_datatype(data, to_type)
+		local t = datatype(data) -- actual data type
+
+		if t == to_type then
+			return data
+		elseif to_type == "string" then
+			if t == "table" then
+				local function dump(o)
+					if type(o) == "table" then
+						local s = "{"
+						for k, v in pairs(o) do
+							if type(k) ~= "number" then
+								k = '"' .. k .. '"'
+							end
+							s = s .. " [" .. k .. "] = " .. dump(v) .. ","
+						end
+						return s .. " }"
+					else
+						return tostring(o)
+					end
+				end
+				return dump(data)
+			else
+				return tostring(data)
+			end
+		elseif to_type == "integer" then
+			local good, retval = pcall(tonumber, data)
+			if good then
+				return math.floor(retval) -- becuase we might get a float back
+			end
+		elseif to_type == "boolean" then
+			if data == "true" then
+				return true
+			elseif data == "false" then
+				return false
+			end
+		elseif to_type == "float" then
+			local good, retval = pcall(tonumber, data)
+			if good then
+				return retval + 0.0
+			end
+		end
+
+		return nil -- undefined
+	end
+
+	-- accepted datatypes: int, str, flt, bool
+	function parse_datatype()
+		local v -- lua equivalent
+		if koy:sub(cursor, cursor + 2) == "int" then
+			step(3)
+			v = "integer"
+		elseif koy:sub(cursor, cursor + 2) == "flt" then
+			step(3)
+			v = "float"
+		elseif koy:sub(cursor, cursor + 2) == "str" then
+			step(3)
+			v = "string"
+		elseif koy:sub(cursor, cursor + 3) == "bool" then
+			step(4)
+			v = "boolean"
+		end
+
+		return v
+	end
+
 	-- figure out the type and get the next value in the document
 	function get_value()
 		if char() == '"' or char() == "'" then
@@ -612,6 +706,7 @@ function KOY.decode(koy, options)
 		if char() == ":" then -- variable
 			-- expect whitespaces with multilinecomments
 			step()
+			local data_type = parse_datatype()
 			parse_whitespace()
 			parse_ml_comment()
 			parse_whitespace()
@@ -634,7 +729,17 @@ function KOY.decode(koy, options)
 				if obj[buffer] then
 					err('Cannot redefine key "' .. buffer .. '"', true)
 				end
-				obj[buffer] = v.value
+
+				local value = v.value
+
+				if data_type ~= nil then
+					local casted_type = cast_datatype(value, data_type)
+					if casted_type ~= nil then
+						value = casted_type
+					end
+				end
+
+				obj[buffer] = value
 			end
 
 			-- clear the buffer

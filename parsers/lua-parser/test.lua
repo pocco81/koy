@@ -2,12 +2,6 @@ local koy_parser = require("src.lib")
 local inspect = require("deps.inspect")
 
 local koy_sample = require("src.utils").dump_file("./samples/s1.koy")
-koy_sample = [[
-person: {
-	name: "michael theodor mouse",
-	age: null
-}
-]]
 local parsed_koy = koy_parser.decode(koy_sample)
 
 -- NOTE: when using inspector, tables that have the same content will be represented by pointers:

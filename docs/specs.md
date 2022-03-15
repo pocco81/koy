@@ -82,13 +82,13 @@ hello: "momma!"
 
 Values can have any of the following data types:
 
--   Integer
--   String
--   Null
--   Array
--   Boolean
--   Float
--   Object
+-   Integer (`int`)
+-   String (`str`)
+-   Null (`null`)
+-   Array (`arr`)
+-   Boolean (`bool`)
+-   Float (`flt`)
+-   Object (`obj`)
 
 &nbsp;
 
