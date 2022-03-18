@@ -197,15 +197,10 @@ import {
 </tr>
 <tr>
 <td> <code><<</code> </td>
-<td> Overwrite values </td>
+<td> Overwrite values from objects </td>
 <td>
 
 ```
-// normal variables
-hello: "world"
-another_hello: ${hello} << "momma!"
-
-// arrays
 user: {
 	name: "Michael Theodor Mouse",
 	age: 93
