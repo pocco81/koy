@@ -1,4 +1,12 @@
-### 🌲 Table of Contents
+<p align="center">
+  <h2 align="center">✨ Specs</h2>
+</p>
+
+<p align="center">
+	Syntactic rules
+</p>
+
+&nbsp;
 
 -   [TL;DR](#tldr)
 -   [General Structure](#general-structure)
