@@ -66,6 +66,22 @@ Go ahead and check out the [Conventions](https://github.com/Pocco81/koy-lang/blo
 
 </tr>
 <tr>
+<td> <code>:</code> </td>
+<td> Set a key, followed by its data type (optional) and then the value. To define a literal key put it between single quotes (<code>''</code>) </td>
+<td>
+
+```
+hello: "world!"
+
+// specifying data type
+temperature:int 12.23
+```
+
+</td>
+</tr>
+
+</tr>
+<tr>
 <td> <code>${}</code> </td>
 <td> Call a variable </td>
 <td>
@@ -110,19 +126,6 @@ hello: """My name is
 	Michael Theodor Mouse, but
 	you can call me Peter.
 """
-```
-
-</td>
-</tr>
-
-</tr>
-<tr>
-<td> <code>``</code> </td>
-<td> Define a literal key </td>
-<td>
-
-```
-`mainland!tv.קום`: "value"
 ```
 
 </td>
@@ -214,20 +217,6 @@ laptop: {
 		name: "Dominic Toretto"
 	}
 }
-```
-
-</td>
-</tr>
-
-</tr>
-<tr>
-<td> <code>!!</code> </td>
-<td> Specify data type </td>
-<td>
-
-```
-price: !!float 50
-id: !!str 10
 ```
 
 </td>
