@@ -18,7 +18,7 @@
 &nbsp;
 
 <p align="center">
-	Koy is a new flexible and feature-rich data serialization language; easy for you, your dog and your average 5 year-old. Its design focuses on being visually unobstrusive while keeping an overall sense of verbosity, allowing easy-to-write parsers (in multiple languages) to effortlessly map the data to hash tables.
+	Koy is a new flexible and feature-rich data serialization language; easy for you, your dog and your average 5 year-old. Its design focuses on being visually unobtrusive while keeping an overall sense of verbosity, allowing easy-to-write parsers (in multiple languages) to effortlessly map the data to hash tables.
 </p>
 
 &nbsp;
